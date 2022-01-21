@@ -66,6 +66,12 @@ type interruptRegister struct {
 	IFBios *volatile.Register16
 }
 
+type mgbaLoggingRegister struct {
+	MGBA_ENABLE,
+	MGBA_FLAGS *volatile.Register16
+	MGBA_LOG_OUT unsafe.Pointer
+}
+
 var (
 	Video = videoRegisters{
 		DispCnt:  (*volatile.Register16)(unsafe.Pointer(uintptr(0x4000000))),
@@ -122,5 +128,10 @@ var (
 		IE:     (*volatile.Register16)(unsafe.Pointer(uintptr(0x4000200))),
 		IF:     (*volatile.Register16)(unsafe.Pointer(uintptr(0x4000202))),
 		IFBios: (*volatile.Register16)(unsafe.Pointer(uintptr(0x3007FF8))),
+	}
+	MgbaLogging = mgbaLoggingRegister{
+		MGBA_ENABLE:  (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF780))),
+		MGBA_FLAGS:   (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF700))),
+		MGBA_LOG_OUT: (unsafe.Pointer(uintptr(0x4FFF600))),
 	}
 )
