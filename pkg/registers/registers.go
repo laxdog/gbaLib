@@ -69,7 +69,14 @@ type interruptRegister struct {
 type mgbaLoggingRegister struct {
 	MGBA_ENABLE,
 	MGBA_FLAGS *volatile.Register16
-	MGBA_LOG_OUT unsafe.Pointer
+	MGBA_LOG_OUT1,
+	MGBA_LOG_OUT2,
+	MGBA_LOG_OUT3,
+	MGBA_LOG_OUT4,
+	MGBA_LOG_OUT5,
+	MGBA_LOG_OUT6,
+	MGBA_LOG_OUT7,
+	MGBA_LOG_OUT8 *volatile.Register8
 }
 
 var (
@@ -130,8 +137,15 @@ var (
 		IFBios: (*volatile.Register16)(unsafe.Pointer(uintptr(0x3007FF8))),
 	}
 	MgbaLogging = mgbaLoggingRegister{
-		MGBA_ENABLE:  (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF780))),
-		MGBA_FLAGS:   (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF700))),
-		MGBA_LOG_OUT: (unsafe.Pointer(uintptr(0x4FFF600))),
+		MGBA_ENABLE:   (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF780))),
+		MGBA_FLAGS:    (*volatile.Register16)(unsafe.Pointer(uintptr(0x4FFF700))),
+		MGBA_LOG_OUT1: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4FFF600))),
+		MGBA_LOG_OUT2: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff601))),
+		MGBA_LOG_OUT3: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff602))),
+		MGBA_LOG_OUT4: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff603))),
+		MGBA_LOG_OUT5: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff604))),
+		MGBA_LOG_OUT6: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff605))),
+		MGBA_LOG_OUT7: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff606))),
+		MGBA_LOG_OUT8: (*volatile.Register8)(unsafe.Pointer(uintptr(0x4fff607))),
 	}
 )

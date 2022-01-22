@@ -6,20 +6,16 @@ import (
 
 func Enable() {
 	registers.MgbaLogging.MGBA_ENABLE.Set(0xc0de)
-	// return registers.MgbaLogging.MGBA_ENABLE.Get() == 0x1DEA
-	// bytes := []byte("Test")
+	var b1 byte = 'H'
+	var b2 byte = 'E'
+	var b3 byte = 'L'
+	var b4 byte = 'L'
+	var b5 byte = 'O'
 
-	// *registers.MgbaLogging.MGBA_LOG_OUT = bytes
+	registers.MgbaLogging.MGBA_LOG_OUT1.Set(b1)
+	registers.MgbaLogging.MGBA_LOG_OUT2.Set(b2)
+	registers.MgbaLogging.MGBA_LOG_OUT3.Set(b3)
+	registers.MgbaLogging.MGBA_LOG_OUT4.Set(b4)
+	registers.MgbaLogging.MGBA_LOG_OUT5.Set(b5)
 	registers.MgbaLogging.MGBA_FLAGS.Set(1 | 0x100)
 }
-
-// static void logOutputMgba(u8 level, const char *message)
-// {
-//     for (int i = 0; message[i] && i < 256; i++)
-//     {
-//         MGBA_LOG_OUT[i] = message[i];
-//     }
-//
-//     // FIXME: What if invalid level? Reject? Default to TRACE?
-//     MGBA_FLAGS = (level - 1) | 0x100;
-// }
